@@ -2,11 +2,9 @@ package com.example.parcialdeportistas
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -25,11 +23,13 @@ class MainActivity : AppCompatActivity() {
         btnContinuar = findViewById(R.id.btnContinuar)
 
         btnContinuar.setOnClickListener {
-            val pais1 = etPrimerPais.text.toString().uppercase()
-            val pais2 = etSegundoPais.text.toString().uppercase()
-            val pais3 = etTercerPais.text.toString().uppercase()
+            val pais1 = etPrimerPais.text.toString().trim().uppercase()
+            val pais2 = etSegundoPais.text.toString().trim().uppercase()
+            val pais3 = etTercerPais.text.toString().trim().uppercase()
 
-            if (paisValido(pais1) && paisValido(pais2) && paisValido(pais3) && paisesDistintos(pais1, pais2, pais3)) {
+            val paises = listOf(pais1, pais2, pais3)
+
+            if (paisesValidos(paises) && paisesDistintos(paises)) {
                 val intent = Intent(this, SecondActivity::class.java)
                 intent.putExtra("pais1", pais1)
                 intent.putExtra("pais2", pais2)
@@ -40,16 +40,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    private fun paisValido(pais: String) : Boolean {
-        return try {
-            enumValueOf<Pais>(pais)
-            true
+
+    private fun paisesValidos(paises : List<String>): Boolean {
+        try {
+            for (pais in paises) {
+                enumValueOf<Pais>(pais)
+            }
+            return true
         } catch (e: IllegalArgumentException) {
-            false
-        }
+            return false
+            }
     }
 
-    private fun paisesDistintos(p1: String, p2: String, p3: String): Boolean {
-        return p1 != p2 && p1 != p3 && p2 != p3
+    private fun paisesDistintos(paises : List<String>): Boolean {
+        return paises.distinct().size == paises.size
     }
 }

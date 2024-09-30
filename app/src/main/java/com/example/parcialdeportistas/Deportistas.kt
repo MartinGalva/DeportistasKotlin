@@ -13,12 +13,12 @@ data class Deportista (
     }
 
     fun mostrarDeportista(): String {
-        val activo_sn : String = if (this.activo) {
+        val activoSN : String = if (this.activo) {
             "Si"
         } else {
             "No"
         }
-        return "Nombre: $nombre\nDeporte: $deporte\nActivo: $activo_sn\nPais: $pais"
+        return "Nombre: $nombre\nDeporte: $deporte\nActivo: $activoSN\nPais: $pais"
     }
 }
 

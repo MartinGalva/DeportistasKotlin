@@ -1,6 +1,5 @@
 package com.example.parcialdeportistas
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -17,7 +16,7 @@ class ThirdActivity : AppCompatActivity() {
         textView = findViewById(R.id.tvDeportista)
         btn = findViewById(R.id.btnVolver)
 
-        val deportista = intent.getSerializableExtra("deportista") as Deportista
+        val deportista = intent.getSerializableExtra("deportista", Deportista::class.java) as Deportista
         textView.text = deportista.mostrarDeportista()
 
         btn.setOnClickListener{

@@ -21,13 +21,13 @@ class SecondActivity : AppCompatActivity() {
 
         spinnerPais = findViewById(R.id.spinnerPais)
         listViewDeportistas = findViewById(R.id.lvDeportistas)
-        val btnVolver = findViewById<Button>(R.id.btnVolver1)
+        btnVolver = findViewById(R.id.btnVolver1)
 
         val pais1 = intent.getStringExtra("pais1")
         val pais2 = intent.getStringExtra("pais2")
         val pais3 = intent.getStringExtra("pais3")
 
-        val depor_arg = listOf(Deportista("Lionel Messi", Deporte.FUTBOL, true, Pais.ARGENTINA),
+        val deporArg = listOf(Deportista("Lionel Messi", Deporte.FUTBOL, true, Pais.ARGENTINA),
             Deportista("Gabriela Sabatini", Deporte.TENIS, false, Pais.ARGENTINA),
             Deportista("Diego Maradona", Deporte.FUTBOL, false, Pais.ARGENTINA),
             Deportista("Manu Ginóbili", Deporte.BALONCESTO, false, Pais.ARGENTINA),
@@ -38,7 +38,7 @@ class SecondActivity : AppCompatActivity() {
             Deportista("Nicolás Massú", Deporte.TENIS, false, Pais.ARGENTINA),
             Deportista("Emanuel Ginóbili", Deporte.BALONCESTO, false, Pais.ARGENTINA)
         )
-        val depor_bra = listOf(Deportista("Pelé", Deporte.FUTBOL, false, Pais.BRASIL),
+        val deporBra = listOf(Deportista("Pelé", Deporte.FUTBOL, false, Pais.BRASIL),
             Deportista("Gustavo Kuerten", Deporte.TENIS, false, Pais.BRASIL),
             Deportista("Ayrton Senna", Deporte.AUTOMOVILISMO, false, Pais.BRASIL),
             Deportista("Marta Vieira da Silva", Deporte.FUTBOL, true, Pais.BRASIL),
@@ -49,7 +49,7 @@ class SecondActivity : AppCompatActivity() {
             Deportista("Gisele Bündchen", Deporte.ATLETISMO, false, Pais.BRASIL),
             Deportista("Vanderlei Cordeiro de Lima", Deporte.ATLETISMO, false, Pais.BRASIL)
         )
-        val depor_col = listOf(Deportista("Mariana Pajón", Deporte.CICLISMO, true, Pais.COLOMBIA),
+        val deporCol = listOf(Deportista("Mariana Pajón", Deporte.CICLISMO, true, Pais.COLOMBIA),
             Deportista("Caterine Ibargüen", Deporte.ATLETISMO, true, Pais.COLOMBIA),
             Deportista("Rigoberto Urán", Deporte.CICLISMO, true, Pais.COLOMBIA),
             Deportista("Nairo Quintana", Deporte.CICLISMO, true, Pais.COLOMBIA),
@@ -59,7 +59,7 @@ class SecondActivity : AppCompatActivity() {
             Deportista("Ingrid Valencia", Deporte.BOXEO, true, Pais.COLOMBIA),
             Deportista("Faustino Asprilla", Deporte.FUTBOL, false, Pais.COLOMBIA),
             Deportista("Camilo Villegas", Deporte.GOLF, true, Pais.COLOMBIA))
-        val depor_ecu = listOf(Deportista("Jefferson Pérez", Deporte.ATLETISMO, false, Pais.ECUADOR),
+        val deporEcu = listOf(Deportista("Jefferson Pérez", Deporte.ATLETISMO, false, Pais.ECUADOR),
             Deportista("Milena Ayón", Deporte.NATACION, true, Pais.ECUADOR),
             Deportista("Byron Piedra", Deporte.ATLETISMO, true, Pais.ECUADOR),
             Deportista("Glenda Morejón", Deporte.ATLETISMO, true, Pais.ECUADOR),
@@ -70,7 +70,7 @@ class SecondActivity : AppCompatActivity() {
             Deportista("Andrea Pérez", Deporte.NATACION, true, Pais.ECUADOR),
             Deportista("Jonathan Caicedo", Deporte.CICLISMO, true, Pais.ECUADOR)
         )
-        val depor_chi = listOf(
+        val deporChi = listOf(
             Deportista("Nicolás Massú", Deporte.TENIS, false, Pais.CHILE),
             Deportista("Fernando González", Deporte.TENIS, false, Pais.CHILE),
             Deportista("Kristel Köbrich", Deporte.NATACION, true, Pais.CHILE),
@@ -84,42 +84,42 @@ class SecondActivity : AppCompatActivity() {
         )
 
         val deportistas1 = when (pais1) {
-            "ARGENTINA" -> depor_arg
-            "BRASIL" -> depor_bra
-            "COLOMBIA" -> depor_col
-            "ECUADOR" -> depor_ecu
-            "CHILE" -> depor_chi
+            "ARGENTINA" -> deporArg
+            "BRASIL" -> deporBra
+            "COLOMBIA" -> deporCol
+            "ECUADOR" -> deporEcu
+            "CHILE" -> deporChi
             else -> emptyList()
         }
         val deportistas2 = when (pais2) {
-            "ARGENTINA" -> depor_arg
-            "BRASIL" -> depor_bra
-            "COLOMBIA" -> depor_col
-            "ECUADOR" -> depor_ecu
-            "CHILE" -> depor_chi
+            "ARGENTINA" -> deporArg
+            "BRASIL" -> deporBra
+            "COLOMBIA" -> deporCol
+            "ECUADOR" -> deporEcu
+            "CHILE" -> deporChi
             else -> emptyList()
         }
         val deportistas3 = when (pais3) {
-            "ARGENTINA" -> depor_arg
-            "BRASIL" -> depor_bra
-            "COLOMBIA" -> depor_col
-            "ECUADOR" -> depor_ecu
-            "CHILE" -> depor_chi
+            "ARGENTINA" -> deporArg
+            "BRASIL" -> deporBra
+            "COLOMBIA" -> deporCol
+            "ECUADOR" -> deporEcu
+            "CHILE" -> deporChi
             else -> emptyList()
         }
 
         val deportistas = listOf(deportistas1, deportistas2, deportistas3)
-        val deportistas_elegidos = mutableListOf<Deportista>()
+        val deportistasElegidos = mutableListOf<Deportista>()
 
         val adapterSpinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, listOf(pais1, pais2, pais3))
         spinnerPais.adapter = adapterSpinner
-        val adapterListView = ArrayAdapter(this, android.R.layout.simple_list_item_1, deportistas_elegidos)
+        val adapterListView = ArrayAdapter(this, android.R.layout.simple_list_item_1, deportistasElegidos)
         listViewDeportistas.adapter = adapterListView
 
         spinnerPais.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                deportistas_elegidos.clear()
-                deportistas_elegidos.addAll(deportistas[p2])
+                deportistasElegidos.clear()
+                deportistasElegidos.addAll(deportistas[p2])
                 adapterListView.notifyDataSetChanged()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -127,9 +127,9 @@ class SecondActivity : AppCompatActivity() {
             }
         }
 
-        listViewDeportistas.setOnItemClickListener { parent, view, position, id ->
+        listViewDeportistas.setOnItemClickListener { _, _, position, _ ->
             run {
-                val deportista = deportistas_elegidos[position]
+                val deportista = deportistasElegidos[position]
                 val intent = Intent(this, ThirdActivity::class.java)
                 intent.putExtra("deportista", deportista)
                 startActivity(intent)
